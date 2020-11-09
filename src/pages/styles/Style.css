@@ -1,0 +1,56 @@
+/* for Kategori */
+.TableCategory {
+    margin-top: 2%;
+}
+
+
+.TableProduct {
+    margin-top: 2%;
+}
+
+/* for Login Page */
+.Container {
+    --primary: 237, 73, 86;
+    --color: 44, 62, 80;
+}
+
+.ContainerLogin {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 48px;
+    padding: 35px;
+    max-width: 400px;
+}
+.ContainerLogin h1 {
+    font-weight: normal;
+    font-size: 1.8rem;
+}
+
+.ContentLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    width: 100%;
+    background: #f3f2f6;
+    height: 100vh;
+    position: relative;
+}
+.ContainerLogin .ContainerInput {
+    padding-bottom: 20px;
+    width: 100%;
+    text-align: right;
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(var(--color));
+    font-size: .9rem;
+}
+
+
+
+
+
+
