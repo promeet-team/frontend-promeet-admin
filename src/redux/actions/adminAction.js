@@ -23,7 +23,7 @@ export const loginSuccess = (data) => ({
         event.preventDefault();
 
         return axios
-        .post("https://server-promeet.herokuapp.com/api/admin/admin/login", values)
+        .post("https://server-promeet.herokuapp.com/api/admin/login", values)
         .then ((response)=> {
           console.log('data', response)
 

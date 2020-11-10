@@ -49,8 +49,28 @@
     font-size: .9rem;
 }
 
-
-
-
-
-
+/* Booking */
+.booking {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .booking td, .booking th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .booking tr:nth-child(even){background-color: #220404;}
+  
+  .booking tr:hover {background-color: rgb(173, 207, 157);}
+  
+  .booking th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+  }
