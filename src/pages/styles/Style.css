@@ -64,13 +64,13 @@
   
   .booking tr:nth-child(even){background-color: #220404;}
   
-  .booking tr:hover {background-color: rgb(173, 207, 157);}
+  .booking tr:hover {background-color: rgb(180, 214, 210);}
   
   .booking th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #7c98b3;
     color: white;
     text-align: center;
   }
