@@ -26,6 +26,7 @@ function Booking() {
     dispatch(getBookingAction());
   }, [dispatch]);
 
+
   console.log("booking di component", listBooking);
 
   const [visible, setVisible] = useState(false);
@@ -54,7 +55,6 @@ function Booking() {
               <table className="booking">
                 <thead>
                   <tr>
-                    <th>Kode Invoice</th>
                     <th>Nama Pemesan</th>
                     <th>Konsultan</th>
                     <th>Profesi</th>
@@ -69,7 +69,6 @@ function Booking() {
                   ? listBooking.map((item, index) => (
                     <tbody key={index}>
                       <tr>
-                        <td>{item.codeInvoice}</td>
                         <td>{item.userId.fullName}</td>
                         <td>{item.profileId.userId.fullName}</td>
                         <td>{item.profileId.profesiId.nameProfesi}</td>
@@ -78,10 +77,6 @@ function Booking() {
                         <td>{item.status}</td>
 
                         <td>
-                          <a>Detail</a> <br />
-                          {/* <p key="submit" type="primary" onClick={() => setVisible(true)}>
-                            update
-                            </p> */}
                             <a  onClick={() => handleClick(item._id)}>Update Status</a>
                         </td>
                       </tr>
@@ -99,17 +94,7 @@ function Booking() {
                 onCancel={() => setVisible(false)}
                 width={'45%'}
               >
-{/* 
-                <form>
-                  <label>Status Booking</label><br />
-                  <input type="radio" checked={status === 'pending'} onChange={() => setStatus('pending')} />
-                  <label htmlFor="">Pending</label><br />
 
-                  <input type="radio" checked={status === 'success'} onChange={() => setStatus('success')} />
-                  <label htmlFor="">Sukses</label><br />
-                  <button  onClick={handleSubmit}>Update</button>
-              
-                </form> */}
                 <label>Status Booking</label><br />
                   <input type="radio" checked={status === 'pending'} onChange={() => setStatus('pending')} />
                   <label htmlFor="">Pending</label><br />
