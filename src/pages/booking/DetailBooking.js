@@ -1,90 +1,113 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
-import { useSelector, useDispatch } from 'react-redux';
-import {getBookingAction, getBookingDetailAction, getEditBookingAction } from '../../redux/actions/bookingAction';
+import moment from 'moment';
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { Layout, Descriptions } from "antd";
+
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getBookingAction,
+  getBookingDetailAction,
+  getEditBookingAction,
+} from "../../redux/actions/bookingAction";
+import HeaderComponent from "../../components/HeaderComponent";
+import SidebarComponent from "../../components/SidebarComponent";
+import "../styles/Style.css";
 
 function DetailBooking() {
-    const dispatch = useDispatch()
-    const history = useHistory();
-    const { id } = useParams();
+  const { Content } = Layout;
 
-    useEffect(() => {
-        // eslint-disable-next-line
-        dispatch(getBookingDetailAction(id));
-        // eslint-disable-next-line
-    }, []);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { id } = useParams();
 
-    const detailBooking = useSelector((state) => state.booking.data);
-    console.log('detail book', detailBooking)
-    console.log('detail book fullname', detailBooking.userId.fullName)
+  useEffect(() => {
+    // eslint-disable-next-line
+    dispatch(getBookingDetailAction(id));
+    // eslint-disable-next-line
+  }, [dispatch]);
 
-    // console.log("component detail booking", detailBooking);
+  const detailBooking = useSelector((state) => state.booking.data);
+  console.log("detail book", detailBooking);
+  // console.log('detail book fullname', detailBooking.userId.fullName)
 
-    const [status, setStatus] = useState(
-         {value: "Pending"}
-        );
+  // console.log("component detail booking", detailBooking);
 
-    const handleChange = e => {
-        setStatus({
-            ...status,
-            [e.target.name] : e.target.value
-        });
-      };
-    
-    //   const handleChange2 = e => {
-    //     console.log('radio1 checked', e.target.value);
-    //     setStatus({
-    //       value2: e.target.value,
-    //     });
-    //   };
+  const [status, setStatus] = useState({ statusUpdate: "" });
 
-    console.log('stus', status)
-    const handleSubmit = (event) => {
-        dispatch(getEditBookingAction(status, event, id))
-        dispatch(getBookingAction());
-        history.push('/booking')
-    }
-        return (
-        <>
-        <p>details</p>
+  const handleChange = (e) => {
+    setStatus({
+      ...status,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-        {/* <form>
-            <label>Status Booking</label><br />
-          
-            <input type="radio"  checked={status === 'Pending'} onChange={() => setStatus('Pending')} />
-            <label htmlFor="">Pending</label><br />
+  console.log("status", status);
+  const handleSubmit = (event) => {
+    dispatch(getEditBookingAction(status, event, id));
+    dispatch(getBookingAction());
+    history.push("/booking");
+  };
+  return (
+    <>
+      <Layout>
+        <HeaderComponent />
+        <Layout>
+          <SidebarComponent />
+          {detailBooking !== undefined ? (
+ <div>
+ <Descriptions
+   title="Detail Booking"
+   style={{marginLeft: "30px", marginTop:"20px"}}
+   bordered
+   column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
+ >
+   <Descriptions.Item label="Nama Pemesan">
+     {detailBooking.userId.fullName}
+   </Descriptions.Item>
+   <Descriptions.Item label="Status">{detailBooking.status}</Descriptions.Item>
+   <Descriptions.Item label="Waktu">{moment(detailBooking.profileId.startDateAvailable).format('L')}</Descriptions.Item>
+    <Descriptions.Item label="Nama Konsultan">{detailBooking.profileId.userId.fullName}</Descriptions.Item>
+    <Descriptions.Item label="Total">${detailBooking.total}</Descriptions.Item>
+   <Descriptions.Item label="Transfer">{detailBooking.transferId.nameMethod}</Descriptions.Item>
+   <Descriptions.Item label="Deskripsi">
+     {detailBooking.profileId.description}
+   </Descriptions.Item>
+   <Descriptions.Item label="Perubahan Status">
+     <form>
+       <label>Status Booking</label>
+       <br />
 
-            <input type="radio"  checked={status === 'Success'} onChange={() => setStatus('Success')} />
-            <label htmlFor="">Sukses</label><br />
-            <button  onClick={handleSubmit}>Update</button> 
-         </form> */}
+       <label>
+         {/* Status Booking <span style={{marginRight: "10px"}}></span> */}
+         <select
+           name="status"
+           onChange={handleChange}
+           placeholder="Masukkan Status"
+         >
+           <option defaultValue="Pending">Pending</option>
+           <option defaultValue="Proses">Proses</option>
+           <option defaultValue="Success">Success</option>
+           <option defaultValue="Failed">Failed</option>
+         </select>
+       </label>
+       <span style={{marginLeft: "10px"}}>
 
-         <form>
-         <label>Status Booking</label><br />
-          
-         <label>
-         Status Booking:
-          <select name ='status' value={status.value} onChange={handleChange}  >
-          <option value="Pending">Pending</option>
-            <option value="Proses">Proses</option>
-            <option value="Success">Success</option>
-            <option value="Failed">Failed</option>
-          </select>
-        </label>
-
-          {/* <input type="text" name="status" value={stat.status} onChange={handleChange1} />
-          <label htmlFor="">Pending</label><br /> */}
-
-          {/* <input type="radio" value={status.value2} onChange={handleChange2} />
-          <label htmlFor="">Sukses</label><br /> */}
-          <button  onClick={handleSubmit}>Update</button> 
-         </form>
-
-        </>
-    )
+       <button  onClick={handleSubmit}> Update</button>
+       </span>
+     </form>
+   </Descriptions.Item>
+ </Descriptions>
+</div>
+          ) : (
+              <p>Loading</p>
+          )}
+         
+        </Layout>
+      </Layout>
+    </>
+  );
 }
 
 export default DetailBooking;
-
