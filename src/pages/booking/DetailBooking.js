@@ -47,7 +47,7 @@ function DetailBooking() {
   const handleSubmit = (event) => {
     dispatch(getEditBookingAction(status, event, id));
     dispatch(getBookingAction());
-    history.push("/booking");
+    history.push("/");
   };
   return (
     <>
