@@ -73,7 +73,7 @@ function Booking() {
                         <td>{item.profileId.userId.fullName}</td>
                         <td>{item.profileId.profesiId.nameProfesi}</td>
                         <td>{item.total}</td>
-                        <td>{item.imgUrl}</td>
+                        <td><img src={item.imgUrl}/></td>
                         <td>{item.status}</td>
 
                         <td>
