@@ -13,10 +13,10 @@ function App() {
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <Dashboard />
-            </Route>
-            <Route path="/booking">
+            </Route> */}
+            <Route exact path="/">
               <Booking/>
             </Route>
             <Route path="/data-booking/:id">
